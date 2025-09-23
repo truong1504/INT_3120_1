@@ -1,5 +1,4 @@
-package com.example.unit1   // sửa theo đúng tên project
-
+package com.example.unit1   
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
-import com.example.unit1.ui.theme.Unit1Theme   // sửa theo đúng theme
+import com.example.unit1.ui.theme.Unit1Theme   
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
