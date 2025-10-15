@@ -1,22 +1,21 @@
 package com.example.unit4.data
 
-import com.example.unit4.R
-import com.example.unit4.model.Dessert
+object DataSource {
+    val entreeMenuItems = listOf(
+        MenuItem("Grilled Chicken", "Grilled chicken with herbs", 5.99),
+        MenuItem("Pasta Primavera", "Vegetable pasta with sauce", 6.49),
+        MenuItem("Beef Steak", "Juicy beef steak", 8.99)
+    )
 
-object Datasource {
-    val desserts = listOf(
-        Dessert(R.drawable.cupcake, 5, 0),
-        Dessert(R.drawable.donut, 10, 5),
-        Dessert(R.drawable.eclair, 15, 20),
-        Dessert(R.drawable.froyo, 30, 50),
-        Dessert(R.drawable.gingerbread, 50, 100),
-        Dessert(R.drawable.honeycomb, 100, 200),
-        Dessert(R.drawable.icecreamsandwich, 500, 500),
-        Dessert(R.drawable.jellybean, 1000, 1000),
-        Dessert(R.drawable.kitkat, 2000, 2000),
-        Dessert(R.drawable.lollipop, 3000, 4000),
-        Dessert(R.drawable.marshmallow, 4000, 8000),
-        Dessert(R.drawable.nougat, 5000, 16000),
-        Dessert(R.drawable.oreo, 6000, 32000)
+    val sideDishMenuItems = listOf(
+        MenuItem("French Fries", "Crispy fries", 2.49),
+        MenuItem("Salad", "Fresh vegetable salad", 2.99),
+        MenuItem("Soup", "Warm soup", 3.49)
+    )
+
+    val accompanimentMenuItems = listOf(
+        MenuItem("Iced Tea", "Refreshing iced tea", 1.99),
+        MenuItem("Soda", "Sparkling drink", 1.49),
+        MenuItem("Water", "Mineral water", 0.99)
     )
 }
