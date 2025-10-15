@@ -3,60 +3,20 @@ package com.example.unit4.data
 import com.example.unit4.R
 import com.example.unit4.model.Dessert
 
-/**
- * Danh sách các món dessert được dùng trong app
- */
 object Datasource {
     val desserts = listOf(
-        Dessert(
-            imageId = R.drawable.cupcake,
-            price = 5,
-            startProductionAmount = 0
-        ),
-        Dessert(
-            imageId = R.drawable.donut,
-            price = 10,
-            startProductionAmount = 5
-        ),
-        Dessert(
-            imageId = R.drawable.eclair,
-            price = 15,
-            startProductionAmount = 20
-        ),
-        Dessert(
-            imageId = R.drawable.froyo,
-            price = 30,
-            startProductionAmount = 50
-        ),
-        Dessert(
-            imageId = R.drawable.gingerbread,
-            price = 50,
-            startProductionAmount = 100
-        ),
-        Dessert(
-            imageId = R.drawable.kitkat,
-            price = 500,
-            startProductionAmount = 1000
-        ),
-        Dessert(
-            imageId = R.drawable.lollipop,
-            price = 1000,
-            startProductionAmount = 2000
-        ),
-        Dessert(
-            imageId = R.drawable.marshmallow,
-            price = 2000,
-            startProductionAmount = 4000
-        ),
-        Dessert(
-            imageId = R.drawable.nougat,
-            price = 3000,
-            startProductionAmount = 8000
-        ),
-        Dessert(
-            imageId = R.drawable.oreo,
-            price = 4000,
-            startProductionAmount = 16000
-        )
+        Dessert(R.drawable.cupcake, 5, 0),
+        Dessert(R.drawable.donut, 10, 5),
+        Dessert(R.drawable.eclair, 15, 20),
+        Dessert(R.drawable.froyo, 30, 50),
+        Dessert(R.drawable.gingerbread, 50, 100),
+        Dessert(R.drawable.honeycomb, 100, 200),
+        Dessert(R.drawable.icecreamsandwich, 500, 500),
+        Dessert(R.drawable.jellybean, 1000, 1000),
+        Dessert(R.drawable.kitkat, 2000, 2000),
+        Dessert(R.drawable.lollipop, 3000, 4000),
+        Dessert(R.drawable.marshmallow, 4000, 8000),
+        Dessert(R.drawable.nougat, 5000, 16000),
+        Dessert(R.drawable.oreo, 6000, 32000)
     )
 }
