@@ -3,41 +3,46 @@ package com.example.unit3
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.unit3.ui.theme.Unit3Theme
 
-// ----------- Problem 4: Basic Class -----------
-open class Student(val name: String, val id: Int) {
-    fun introduce(): String {
-        return "Xin chào, tôi là $name, mã sinh viên $id."
-    }
-}
+// ------------------- DATA MODEL -------------------
+data class Course(
+    val name: String,
+    val lessons: Int,
+    val imageRes: Int
+)
 
-// ----------- Problem 5: Inheritance -----------
-class HonorStudent(name: String, id: Int, val gpa: Double) : Student(name, id) {
-    fun getScholarshipStatus(): String {
-        return if (gpa >= 3.5) "Đủ điều kiện học bổng 🎓" else "Chưa đủ điều kiện học bổng."
-    }
-}
-
-// ----------- Problem 6: Collections -----------
-fun getStudentList(): MutableList<Student> {
-    return mutableListOf(
-        Student("An", 1001),
-        Student("Bình", 1002),
-        Student("Chi", 1003)
+// ------------------- SAMPLE DATA -------------------
+fun getCourses(): List<Course> {
+    return listOf(
+        Course("Android Basics", 8, R.drawable.ic_launcher_foreground),
+        Course("Kotlin Fundamentals", 12, R.drawable.ic_launcher_foreground),
+        Course("Jetpack Compose", 10, R.drawable.ic_launcher_foreground),
+        Course("UI Layouts", 7, R.drawable.ic_launcher_foreground),
+        Course("Data Persistence", 9, R.drawable.ic_launcher_foreground),
+        Course("Networking", 5, R.drawable.ic_launcher_foreground),
+        Course("Debugging", 6, R.drawable.ic_launcher_foreground),
+        Course("Testing", 4, R.drawable.ic_launcher_foreground)
     )
 }
 
-// ----------- Problem 7: Kết hợp Classes + Collections -----------
-fun listHonorStudents(students: List<HonorStudent>): String {
-    return students.joinToString("\n") { "${it.name} (${it.id}) - GPA: ${it.gpa}" }
-}
-
+// ------------------- MAIN ACTIVITY -------------------
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,58 +52,70 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PracticeScreen()
+                    CoursesGrid(getCourses())
                 }
             }
         }
     }
 }
 
+// ------------------- GRID UI -------------------
 @Composable
-fun PracticeScreen() {
-    var output by remember { mutableStateOf("") }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+fun CoursesGrid(courses: List<Course>) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2), // 2 cột
+        modifier = Modifier.padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Button(onClick = {
-            val s = Student("Trường", 22021205)
-            output = s.introduce()
-        }) {
-            Text("Problem 4: Class")
+        items(courses) { course ->
+            CourseCard(course)
         }
+    }
+}
 
-        Button(onClick = {
-            val hs = HonorStudent("Lan", 22022222, 3.8)
-            output = "${hs.introduce()}\n${hs.getScholarshipStatus()}"
-        }) {
-            Text("Problem 5: Inheritance")
-        }
-
-        Button(onClick = {
-            val list = getStudentList()
-            list.add(Student("Dũng", 22023443))
-            output = list.joinToString("\n") { it.introduce() }
-        }) {
-            Text("Problem 6: Collections")
-        }
-
-        Button(onClick = {
-            val honors = listOf(
-                HonorStudent("Hà", 22044302, 3.9),
-                HonorStudent("Minh", 22021204, 3.6)
+// ------------------- CARD ITEM -------------------
+@Composable
+fun CourseCard(course: Course) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        ) {
+            Image(
+                painter = painterResource(id = course.imageRes),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(80.dp)
+                    .align(Alignment.CenterVertically),
+                contentScale = ContentScale.Crop
             )
-            output = listHonorStudents(honors)
-        }) {
-            Text("Problem 7: Combine")
+            Spacer(modifier = Modifier.width(8.dp))
+            Column(
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = course.name,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Text(
+                    text = "${course.lessons} lessons",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
+    }
+}
 
-        Text(
-            text = output,
-            modifier = Modifier.padding(top = 20.dp)
-        )
+@Preview(showBackground = true)
+@Composable
+fun CourseGridPreview() {
+    Unit3Theme {
+        CoursesGrid(getCourses())
     }
 }
