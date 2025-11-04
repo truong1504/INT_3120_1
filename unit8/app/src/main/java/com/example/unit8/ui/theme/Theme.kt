@@ -5,15 +5,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val LightColors = lightColorScheme(
-    primary = androidx.compose.ui.graphics.Color(0xFF6750A4),
-    onPrimary = androidx.compose.ui.graphics.Color.White,
-)
-
-private val DarkColors = darkColorScheme(
-    primary = androidx.compose.ui.graphics.Color(0xFFD0BCFF),
-    onPrimary = androidx.compose.ui.graphics.Color.Black,
-)
+private val LightColors = lightColorScheme()
+private val DarkColors = darkColorScheme()
 
 @Composable
 fun Unit8Theme(
@@ -22,7 +15,7 @@ fun Unit8Theme(
 ) {
     MaterialTheme(
         colorScheme = if (darkTheme) DarkColors else LightColors,
-        typography = Typography,
+        typography = androidx.compose.material3.Typography(),
         content = content
     )
 }

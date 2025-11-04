@@ -9,6 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
+
         applicationId = "com.example.unit8simple"
         minSdk = 24
         targetSdk = 35
@@ -30,6 +31,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.window:window:1.3.0")
+
     // Compose BOM
     implementation(platform("androidx.compose:compose-bom:2024.09.00"))
 
